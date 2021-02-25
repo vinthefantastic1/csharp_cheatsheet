@@ -4,6 +4,9 @@
         var v = $"{ApplicationDeployment.CurrentDeployment.CurrentVersion}";
     }
 
+### Get app.config values
+    var networkPath = Properties.Settings.Default.networkPath;
+
 ### Create and write to temp file
     string myTempFile = Path.Combine(Path.GetTempPath(), "MyFile.txt");
     var cc = 10;
@@ -15,6 +18,18 @@
         }
 
     }
+    
+### Sum of a datatable column
+    var sum = dt.Compute("Sum(Amount)", dt.DefaultView.RowFilter);
+ 
+### Numbers
+    {0:C2}
+    {12345:N2}
+    
+    decimal val2 = 12345.67;
+    Console.WriteLine($"The number is {val2,10:N2}"); // Displays "The number is  12,345.67"
+
+    
 
 ### Dates
     // Originally from https://www.csharp-examples.net/string-format-datetime/
