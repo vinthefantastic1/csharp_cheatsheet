@@ -46,3 +46,27 @@
     "{0:F FF FFF FFFF}", dt);  // "1 12 123 123"    without zeroes
     "{0:t tt}",          dt);  // "P PM"            A.M. or P.M.
     "{0:z zz zzz}",      dt);  // "-6 -06 -06:00"   time zone
+
+### EF Query to Class Instance
+
+            var data = db.GCS_Chargeback_Summary.Where(i => i.serviceType == serviceType & i.status == status).
+                    Select(c => new JobListing()
+                    {
+                        jobNo = c.jobNo,
+                        totalCost = c.totalCharges,
+                        description = c.description,
+                        WBS = c.wbs,
+                        CC = c.cc,
+                        IO = c.io,
+                        status = c.status,
+                        postingDate = c.postingDate,
+                        SapMessage = c.SAP_Message,
+                        CreateDate = c.createDate,
+                        SAPDocuNum = c.SAP_Doc_No,
+                        SAPJobNo = c.SAP_Job_No,
+                        ServiceType = c.serviceType
+
+
+                    });
+
+            var datalist = data.ToList();
