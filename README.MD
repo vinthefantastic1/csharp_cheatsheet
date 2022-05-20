@@ -108,4 +108,4 @@ Update the Dataset to return the last updated recordid for a datatable.update() 
         PHONE_NO, EMAIL, misc_1, misc_2, misc_3, misc_4, From_IBANK_account, From_IBANK_key, From_IBANK_Country, CLABE_NO, BBAN, CCI, ACC_TYPE 
         FROM bank_update_requests WHERE (request_id = SCOPE_IDENTITY()) AND (request_version = @request_version)
 
-6) CHANGE EXECUTE MODE TO SCALAR (in properties of newly created Query)
+6) ~~CHANGE EXECUTE MODE TO SCALAR (in properties of newly created Query)
