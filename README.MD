@@ -70,3 +70,42 @@
                     });
 
             var datalist = data.ToList();
+
+### Return a SCALAR value in C# Dataset
+
+Update the Dataset to return the last updated recordid for a datatable.update() call:
+1) Right click the table adapter,
+2) Choose Query
+3) USE SQL
+4) down at the bottom choose INSERT
+5) Enter your query like below: (notice the SELECT using SCOPE_IDENTITY() after the INSERT)
+         
+        INSERT INTO [dbo].[bank_update_requests] ([request_version], [vendor_id], [stc_upi], [vendor_type], [request_type], [request_type_descr], 
+        [bank_type], [payment_type], [country_code], [currency_code], [bene_name], [bank_key], [account_number], [IBN_number], [swift_code], 
+        [ABA_number], [bank_name], [request_status], [request_status_descr], [submit_date], [submit_time], [status_updatedate], [status_updatetime], 
+        [completion_date], [completion_time], [Routing_IRCCode], [From_acct_No], [From_bank_key], [From_bank_cntkey], [IBANK_type], [IBANK_swift_code], 
+        [IBANK_account], [IBANK_name], [IBANK_key], [IBANK_Country], [IBANK_status], [Requester_Comment], [Requester_Comment_2], [vmr_comment], 
+        [vmr_comment_2], [vmr_comment_3], [vmr_comment_4], [TTL_UPI], [ADMIN_UPI], [TAX_ID], [BANK_TAX_ID], [CITAD_CODE], [IFSC_CODE], [SORT_CODE], 
+        [BRANCH_CODE], [PURPOSE_CODE], [BSB_NO], [BANK_CODE], [KBA_CODE], [EKNP_CODE], [PAYMT_PURPOSE], [USD_PAY], [CPF_CODE], [TRANSIT_CODE], [CBU_CODE], 
+        [BIK_CODE], [VO_CODE], [ROUTING_NO], [SKN_CODE], [DOB], [CNIC], [BEN_ADDRESS], [BENE_STATE], [REGION], [BUILDING_CODE], [POSTAL_CODE], 
+        [STREET_NAME], [PHONE_NO], [EMAIL], [misc_1], [misc_2], [misc_3], [misc_4], [From_IBANK_account], [From_IBANK_key], [From_IBANK_Country],
+        [CLABE_NO], [BBAN], [CCI], [ACC_TYPE]) VALUES (@request_version, @vendor_id, @stc_upi, @vendor_type, @request_type, @request_type_descr,
+        @bank_type, @payment_type, @country_code, @currency_code, @bene_name, @bank_key, @account_number, @IBN_number, @swift_code, @ABA_number,
+        @bank_name, @request_status, @request_status_descr, @submit_date, @submit_time, @status_updatedate, @status_updatetime, @completion_date,
+        @completion_time, @Routing_IRCCode, @From_acct_No, @From_bank_key, @From_bank_cntkey, @IBANK_type, @IBANK_swift_code, @IBANK_account, 
+        @IBANK_name, @IBANK_key, @IBANK_Country, @IBANK_status, @Requester_Comment, @Requester_Comment_2, @vmr_comment, @vmr_comment_2, @vmr_comment_3, 
+        @vmr_comment_4, @TTL_UPI, @ADMIN_UPI, @TAX_ID, @BANK_TAX_ID, @CITAD_CODE, @IFSC_CODE, @SORT_CODE, @BRANCH_CODE, @PURPOSE_CODE, @BSB_NO, 
+        @BANK_CODE, @KBA_CODE, @EKNP_CODE, @PAYMT_PURPOSE, @USD_PAY, @CPF_CODE, @TRANSIT_CODE, @CBU_CODE, @BIK_CODE, @VO_CODE, @ROUTING_NO,
+        @SKN_CODE, @DOB, @CNIC, @BEN_ADDRESS, @BENE_STATE, @REGION, @BUILDING_CODE, @POSTAL_CODE, @STREET_NAME, @PHONE_NO, @EMAIL, @misc_1,
+        @misc_2, @misc_3, @misc_4, @From_IBANK_account, @From_IBANK_key, @From_IBANK_Country, @CLABE_NO, @BBAN, @CCI, @ACC_TYPE); SELECT request_id, 
+        request_version, vendor_id, stc_upi, vendor_type, request_type, request_type_descr, bank_type, payment_type, country_code, currency_code,
+        bene_name, bank_key, account_number, IBN_number, swift_code, ABA_number, bank_name, request_status, request_status_descr, submit_date, 
+        submit_time, status_updatedate, status_updatetime, completion_date, completion_time, Routing_IRCCode, From_acct_No, From_bank_key, 
+        From_bank_cntkey, IBANK_type, IBANK_swift_code, IBANK_account, IBANK_name, IBANK_key, IBANK_Country, IBANK_status, Requester_Comment, 
+        Requester_Comment_2, vmr_comment, vmr_comment_2, vmr_comment_3, vmr_comment_4, TTL_UPI, ADMIN_UPI, TAX_ID, BANK_TAX_ID, CITAD_CODE, 
+        IFSC_CODE, SORT_CODE, BRANCH_CODE, PURPOSE_CODE, BSB_NO, BANK_CODE, KBA_CODE, EKNP_CODE, PAYMT_PURPOSE, USD_PAY, CPF_CODE, TRANSIT_CODE, 
+        CBU_CODE, BIK_CODE, VO_CODE, ROUTING_NO, SKN_CODE, DOB, CNIC, BEN_ADDRESS, BENE_STATE, REGION, BUILDING_CODE, POSTAL_CODE, STREET_NAME, 
+        PHONE_NO, EMAIL, misc_1, misc_2, misc_3, misc_4, From_IBANK_account, From_IBANK_key, From_IBANK_Country, CLABE_NO, BBAN, CCI, ACC_TYPE 
+        FROM bank_update_requests WHERE (request_id = SCOPE_IDENTITY()) AND (request_version = @request_version)
+
+6) CHANGE EXECUTE MODE TO SCALAR (in properties of newly created Query)
