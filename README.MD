@@ -109,3 +109,16 @@ Update the Dataset to return the last updated recordid for a datatable.update() 
         FROM bank_update_requests WHERE (request_id = SCOPE_IDENTITY()) AND (request_version = @request_version)
 
 6) ~~CHANGE EXECUTE MODE TO SCALAR (in properties of newly created Query)
+
+### Razor Pages - ActionLink with dynamic 'row' variable and parameters
+                        foreach (var row in ViewBag.ItemList)
+                        {
+                            <tr>
+                                                    <td>
+ 
+
+                                                        @Html.ActionLink((string)row.sku, "Index", "BookSales", new { SearchString = row.sku, BeginDate = ViewBag.TempBeginDate, EndDate = ViewBag.TempEndDate }, new { target = "_blank" })
+
+
+                                                    </td>
+
