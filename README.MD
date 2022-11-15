@@ -1,3 +1,34 @@
+### CSI - CSharp Interactive:
+    https://learn.microsoft.com/en-us/archive/msdn-magazine/2016/january/essential-net-csharp-scripting
+
+        C:\Program Files (x86)\Microsoft Visual Studio 14.0>csi
+        Microsoft (R) Visual C# Interactive Compiler version 1.1.0.51014
+        Copyright (C) Microsoft Corporation. All rights reserved.
+        Type "#help" for more information.
+        > System.Console.WriteLine("Hello! My name is Inigo Montoya");
+        Hello! My name is Inigo Montoya
+        > 
+        > ConsoleColor originalConsoleColor  = Console.ForegroundColor;
+        > try{
+        .  Console.ForegroundColor = ConsoleColor.Red;
+        .  Console.WriteLine("You killed my father. Prepare to die.");
+        . }
+        . finally
+        . {
+        .  Console.ForegroundColor = originalConsoleColor;
+        . }
+        You killed my father. Prepare to die.
+        > IEnumerable<Process> processes = Process.GetProcesses();
+        > using System.Collections.Generic;
+        > processes.Where(process => process.ProcessName.StartsWith("c") ).
+        .  Select(process => process.ProcessName ).Distinct()
+        DistinctIterator { "chrome", "csi", "cmd", "conhost", "csrss" }
+        > processes.First(process => process.ProcessName == "csi" ).MainModule.FileName
+        "C:\\Program Files (x86)\\MSBuild\\14.0\\bin\\csi.exe"
+        > $"The current directory is { Environment.CurrentDirectory }."
+        "The current directory is C:\\Program Files (x86)\\Microsoft Visual Studio 14.0."
+        >
+
 ### Winforms get deployment version
     if (ApplicationDeployment.IsNetworkDeployed) 
     {
