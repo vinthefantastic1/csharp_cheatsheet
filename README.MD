@@ -174,3 +174,8 @@ Update the Dataset to return the last updated recordid for a datatable.update() 
                     }
                     throw;
                 }
+
+#### MVC Format DateTime
+
+    @item.Aedat.GetValueOrDefault().ToString("yyyy-MMM-dd")
+    
