@@ -1,3 +1,26 @@
+### Create EF Connection String Dynamically
+        using System.Data.Entity.Core.EntityClient;
+
+        // Specify the database server name and database name
+        string serverName = "myServer";
+        string dbName = "myDatabase";
+
+        // Create a new EntityConnectionStringBuilder
+        var entityBuilder = new EntityConnectionStringBuilder();
+
+        // Set the provider name (e.g. "System.Data.SqlClient" for SQL Server)
+        entityBuilder.Provider = "System.Data.SqlClient";
+
+        // Set the provider connection string (e.g. "Data Source=myServer;Initial Catalog=myDatabase;Integrated Security=True")
+        entityBuilder.ProviderConnectionString = $"Data Source={serverName};Initial Catalog={dbName};Integrated Security=True";
+
+        // Set the metadata (e.g. "res://*/MyModel.csdl|res://*/MyModel.ssdl|res://*/MyModel.msl")
+        entityBuilder.Metadata = "res://*/MyModel.csdl|res://*/MyModel.ssdl|res://*/MyModel.msl";
+
+        // Build the entity connection string
+        string entityConnectionString = entityBuilder.ToString();
+
+
 ### CSI - CSharp Interactive:
     https://learn.microsoft.com/en-us/archive/msdn-magazine/2016/january/essential-net-csharp-scripting
 
